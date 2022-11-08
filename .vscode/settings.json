@@ -4,6 +4,11 @@
         "ostream": "cpp",
         "new": "cpp",
         "iostream": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "array": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "utility": "cpp",
+        "type_traits": "cpp"
     }
 }
