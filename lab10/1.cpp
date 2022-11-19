@@ -13,20 +13,25 @@ int main(int argc, char *argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    int* a = new int[3*size];
-    if (rank==0) {
-        for (int i = 0; i < 3*size; i++)
+    int* a = new int[size * 2];
+    if (rank == 0) {
+        for (int i = 0; i < size * 2; i++) {
             a[i] = i;
+        }
     }
-    int* b = new int[3];
 
-    MPI_Scatter(a, 3, MPI_INT, b, 3, MPI_INT, 0, MPI_COMM_WORLD);
+    int* b = new int[2];
+
+    MPI_Scatter(a, 2, MPI_INT, b, 2, MPI_INT, 0, MPI_COMM_WORLD);
 
     usleep(rank * 100000);
-    printf("rank: %d, a: ", rank);
-    for (int i = 0; i < 3; i++)
-        printf("%d ", b[i]);
-    printf("\n");
+    printf("rank: %d, b: ", rank);
+    for (int i = 0; i < 2; i++) {
+        cout << b[i] << " ";
+    }
+    cout << endl;
+
+    delete [] a, b;
     MPI_Finalize();
     return 0;
 }
